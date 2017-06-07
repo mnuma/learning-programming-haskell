@@ -4,11 +4,26 @@
 
 -- 9.3
 -- ghc -e sample1 Io.hs
+-- これは文字を返すアクション
 sample1 :: IO Char
 sample1 = do
   c <- getChar
   putChar c
   return c
+
+sample1a = do
+  m <- return "abc"
+  print m
+  -- print <- return "abc"
+
+sample1b = do
+  print =<< return "abc"
+
+sample1c = do
+  putStr "hello"
+  putStrLn " world"
+
+sample1d = putStr "hello" >> putStrLn " world"
 
 -- 9.4
 -- ghc -e sample2 Io.hs
@@ -16,8 +31,12 @@ sample2 :: IO ()
 sample2 = do
   c <- getChar
   putChar '\n'
-  return c
+  putChar c
   putChar '\n'
+
+-- 上記を書き換え
+sample2a :: IO ()
+sample2a = getChar >>= \c -> putChar '\n' >> putChar c >> putChar '\n'
 
 -- ghc -e sample3 put.hs
 sample3 :: IO String

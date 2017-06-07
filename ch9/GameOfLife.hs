@@ -14,16 +14,17 @@ writeat p xs = do goto p
 
 type Pos = (Int, Int)
 
+-- 1) 幅と高さを決める
 width :: Int
-width = 5
+width = 10
 
 height :: Int
-height = 5
+height = 10
 
 type Board = [Pos]
 
 showcells :: Board -> IO ()
-showcells b = sequence_ [writeat p "o" | p <- b]
+showcells b = sequence_ [writeat p "💩" | p <- b]
 
 isAlive :: Board -> Pos -> Bool
 isAlive b p = elem p b
@@ -70,8 +71,10 @@ wait n = sequence_ [return () | _ <- [1..n]]
 clearDeads :: Board -> IO ()
 clearDeads b = sequence_ [writeat p " " | p <- b]
 
+-- 2) ボードで生きてるセルの位置をリストで持つ
 glider :: Board
 glider = [(4, 2), (2, 3), (4, 3), (3, 4), (4, 4)]
+-- glider = [(1, 2), (2, 3), (4, 3), (3, 4), (4, 4)]
 
 blinker :: Board
 blinker = [(3, 2), (3, 3), (3, 4)]

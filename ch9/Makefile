@@ -12,5 +12,5 @@ cabal-update: ## cabal update.
 run-caluclator: ## run caluclator.
 	@ghc -e run Calculator.hs
 
-run-game-of-life:
+run-game-of-life: ## run game of life
 	@ghc -e run GameOfLife.hs

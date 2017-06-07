@@ -23,15 +23,22 @@ sample2 = do
   cls
   goto(0,0)
 
--- writreat :: Pos -> String -> IO()
--- writreat p xs = do goto p
---   putStr xs
---
--- seqn :: [IO a] -> IO()
--- seqn [] = return ()
--- seqn (a:as) = do
---   a
---   seqn as
+writreat :: Pos -> String -> IO()
+writreat p xs = do
+  goto p
+  putStr xs
+
+seqn :: [IO a] -> IO()
+seqn [] = return ()
+seqn (a:as) = do
+  a
+  seqn as
+
+sample3 :: IO()
+sample3 = do
+  cls
+  writreat (0,20) "hogehoge"
+
 --
 -- -- リスト内包表記
 -- putStr xs = seqn[putChar x | x <- xs]

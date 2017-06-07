@@ -19,14 +19,14 @@ instance Monad Parser where
                           [(v, out)] -> parse (f v) out)
 
 instance Alternative Parser where
-    (<|>) = mplus
-    empty = mzero
-
-instance MonadPlus Parser where
-    mzero       = P (\inp -> [])
-    p `mplus` q = P (\inp -> case parse p inp of
+    empty       = P (\inp -> [])
+    p <|> q = P (\inp -> case parse p inp of
                              [] -> parse q inp
                              [(v, out)] -> [(v, out)])
+
+instance MonadPlus Parser where
+    mzero       = empty
+    mplus = (<|>)
 
 failure :: Parser a
 failure = mzero
