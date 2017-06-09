@@ -21,7 +21,7 @@ goto (x,y) =
 -- ghc -e sample2 Pos.hs
 sample2 = do
   cls
-  goto(0,0)
+  goto(0,10)
 
 writreat :: Pos -> String -> IO()
 writreat p xs = do
@@ -37,7 +37,7 @@ seqn (a:as) = do
 sample3 :: IO()
 sample3 = do
   cls
-  writreat (0,20) "hogehoge"
+  writreat (10,10) "hogehoge"
 
 --
 -- -- リスト内包表記

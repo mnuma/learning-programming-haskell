@@ -5,11 +5,12 @@
 -- 9.3
 -- ghc -e sample1 Io.hs
 -- これは文字を返すアクション
-sample1 :: IO Char
+sample1 :: IO String
 sample1 = do
   c <- getChar
-  putChar c
-  return c
+  b <- getChar
+  d <- getChar
+  return (b : (c : []))
 
 sample1a = do
   m <- return "abc"
